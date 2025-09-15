@@ -1,95 +1,86 @@
-import Image from "next/image";
+// app/page.jsx
+import ProductImages from "@/components/ProductImages";
 import styles from "./page.module.css";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  // pass phone via env or fallback (use international digits, e.g. 2348012345678)
+  const ownerPhone = process.env.NEXT_PUBLIC_OWNER_PHONE || "2348012345678";
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
+  return (
+    <main className={styles.container}>
+      <header className={styles.header}>
+        <div className={styles.brand}>
+          <a href="/">Baby Store</a>
+        </div>
+
+        <nav className={styles.nav}>
+          <a href="#products">Shop</a>
+          <a href="#new">New</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div className={styles.headerActions}>
+          <button className={styles.searchBtn} aria-label="Search">
+            🔎
+          </button>
+          <a className={styles.cart} href="#" aria-label="Cart">
+            🛒
           </a>
         </div>
-      </main>
+      </header>
+
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <div className={styles.heroCopy}>
+            <h1>Welcome to Baby Store</h1>
+            <p>
+              Curated essentials for little ones — soft, safe and stylish. Shop
+              our featured picks below.
+            </p>
+            <a className={styles.heroCta} href="#products">
+              Shop Featured
+            </a>
+            <div className={styles.heroSub}>
+              Free shipping on orders over ₦10,000 • 30-day returns
+            </div>
+          </div>
+
+          {/* Visual/Collage — uses decorative images from /public (or replace with background image) */}
+          <div className={styles.heroVisual} aria-hidden>
+            <div className={styles.collage}>
+              <div className={styles.collageLarge}></div>
+              <div className={styles.collageStack}>
+                <div className={styles.collageItem}></div>
+                <div className={styles.collageItem}></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="products" className={styles.section}>
+        <h2 className={styles.sectionTitle}>Featured products</h2>
+        {/* pass ownerPhone so Buy Now whatsapp link works */}
+        <ProductImages ownerPhone={ownerPhone} />
+      </section>
+
+      <section className={styles.infoStrip}>
+        <div>🚚 Fast shipping</div>
+        <div>🔁 30-day returns</div>
+        <div>🔒 Secure checkout</div>
+      </section>
+
       <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        <div className={styles.footerLeft}>
+          <strong>Baby Store</strong> — © {new Date().getFullYear()}
+        </div>
+        <div className={styles.footerRight}>
+          <a href="#contact">Contact</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+        </div>
       </footer>
-    </div>
+    </main>
   );
 }
