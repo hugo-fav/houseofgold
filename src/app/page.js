@@ -1,6 +1,7 @@
 // app/page.jsx
 import ProductImages from "@/components/ProductImages";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 export default function Home() {
   // pass phone via env or fallback (use international digits, e.g. 2348012345678)
@@ -10,23 +11,23 @@ export default function Home() {
     <main className={styles.container}>
       <header className={styles.header}>
         <div className={styles.brand}>
-          <a href="/">Baby Store</a>
+          <Link href="/">Baby Store</Link>
         </div>
 
         <nav className={styles.nav}>
-          <a href="#products">Shop</a>
-          <a href="#new">New</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+          <Link href="#products">Shop</Link>
+          <Link href="#new">New</Link>
+          <Link href="#about">About</Link>
+          <Link href="#contact">Contact</Link>
         </nav>
 
         <div className={styles.headerActions}>
           <button className={styles.searchBtn} aria-label="Search">
             🔎
           </button>
-          <a className={styles.cart} href="#" aria-label="Cart">
+          <Link className={styles.cart} href="#" aria-label="Cart">
             🛒
-          </a>
+          </Link>
         </div>
       </header>
 
@@ -38,9 +39,9 @@ export default function Home() {
               Curated essentials for little ones — soft, safe and stylish. Shop
               our featured picks below.
             </p>
-            <a className={styles.heroCta} href="#products">
+            <Link className={styles.heroCta} href="#products">
               Shop Featured
-            </a>
+            </Link>
             <div className={styles.heroSub}>
               Free shipping on orders over ₦10,000 • 30-day returns
             </div>
@@ -76,9 +77,9 @@ export default function Home() {
           <strong>Baby Store</strong> — © {new Date().getFullYear()}
         </div>
         <div className={styles.footerRight}>
-          <a href="#contact">Contact</a>
-          <a href="/privacy">Privacy</a>
-          <a href="/terms">Terms</a>
+          <Link href="#contact">Contact</Link>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Terms</Link>
         </div>
       </footer>
     </main>
